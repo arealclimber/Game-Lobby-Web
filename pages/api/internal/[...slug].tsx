@@ -3,9 +3,10 @@ import { createProxyMiddleware } from "http-proxy-middleware"
 // import getEnv from "@/utils/env";
 
 const proxyMiddleware = createProxyMiddleware({
-  // target: getEnv().NEXT_PUBLIC_BACKEND_ENDPOINT,
+  // target: "https://api.gaas.waterballsa.tw",
+  target: "http://localhost:3030",
   changeOrigin: true,
-  pathRewrite: { "^/api/internal": "/api" },
+  pathRewrite: { "^/api/internal": "/api/mock" },
 }) as any
 
 export const config = {
