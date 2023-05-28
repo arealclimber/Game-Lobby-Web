@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react"
+import { PropsWithChildren } from "react";
 
 export enum TagColor {
   INDIGO = "indigo",
@@ -10,14 +10,14 @@ export interface TagProps extends React.ComponentPropsWithoutRef<"span"> {
   /**
    * The color of Tag, defined in TagColor
    */
-  color?: TagColor
+  color?: TagColor;
 }
 
 const Tag = ({
   children,
   color: colorProps = TagColor.INDIGO,
 }: PropsWithChildren<TagProps>) => {
-  const color = `bg-${colorProps}-500`
+  const color = `bg-${colorProps}-500`;
 
   return (
     <span
@@ -25,7 +25,7 @@ const Tag = ({
     >
       {children}
     </span>
-  )
-}
+  );
+};
 
-export default Tag
+export default Tag;

@@ -23,7 +23,6 @@ export interface TabProps {
    */
   onTabClick?: (tabKey: Key) => void;
 }
-
 export default function Tab(props: TabProps) {
   const { tabKey, label, className, active, onTabClick } = props;
 
