@@ -1,16 +1,17 @@
 import Sidebar from "@/shared/components/Sidebar";
 import Footer from "@/shared/components/Footer";
-import Breadcrumb, { BreadcrumbItem } from "@/shared/components/Breadcrumb";
+import Breadcrumb from "@/shared/components/Breadcrumb";
+import { BreadcrumbItemProps } from "@/shared/components/Breadcrumb/BreadcrumbItem";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const bread: BreadcrumbItem[] = [
+  const bread: BreadcrumbItemProps[] = [
     {
       text: "首頁",
       href: "/",
     },
     {
       text: "遊戲大廳",
-      href: "",
+      href: "/game",
     },
     {
       text: "房間列表",
@@ -19,11 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   ];
   return (
     <div className="flex flex-col min-h-screen bg-black">
-      <Breadcrumb
-        linkClassName="text-blue-500 hover:text-green-500"
-        arrowClassName="bg-red-500"
-        items={bread}
-      />
+      <Breadcrumb items={bread} />
       <Sidebar />
       <main className="">{children}</main>
       <Footer />

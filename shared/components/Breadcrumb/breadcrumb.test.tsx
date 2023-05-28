@@ -1,10 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Breadcrumb, { BreadcrumbItem } from "./Breadcrumb";
+import Breadcrumb from "./Breadcrumb";
+import { BreadcrumbItemProps } from "./BreadcrumbItem";
 
 describe("Breadcrumb", () => {
   it("renders breadcrumbs correctly", () => {
-    const items: BreadcrumbItem[] = [
+    const items: BreadcrumbItemProps[] = [
       { text: "Home", href: "/" },
       { text: "Blog", href: "/blog" },
       { text: "Article", href: "/blog/article" },
