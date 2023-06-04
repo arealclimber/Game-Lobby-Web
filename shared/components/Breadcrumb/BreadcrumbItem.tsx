@@ -1,33 +1,27 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export interface BreadcrumbItemProps {
   text: string;
-  href?: string;
-  isActive?: boolean;
+  href: string;
+  className?: string;
 }
 
-const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
-  text,
-  href,
-  isActive,
-}) => {
-  const itemClass = cn(
-    `text-base`,
-    isActive
-      ? `text-white hover:text-gray-500`
-      : `text-white hover:text-gray-500`
+const BreadcrumbItem = ({ text, href, className }: BreadcrumbItemProps) => {
+  const router = useRouter();
+  const isActive = href === router.pathname;
+  const baseClass = `text-base text-white`;
+  const activeClass = !isActive && `hover:text-gray-500`;
+  const itemClass = cn(baseClass, activeClass, className);
+
+  return href ? (
+    <Link href={href} className={itemClass}>
+      {text}
+    </Link>
+  ) : (
+    <span className={itemClass}>{text}</span>
   );
-
-  if (href) {
-    return (
-      <Link href={href}>
-        <p className={itemClass}>{text}</p>
-      </Link>
-    );
-  }
-
-  return <span className={itemClass}>{text}</span>;
 };
 
 export default BreadcrumbItem;

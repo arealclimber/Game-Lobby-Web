@@ -1,39 +1,33 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Fragment } from "react";
+import React, { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import BreadcrumbItem, { BreadcrumbItemProps } from "./BreadcrumbItem";
 
-export interface BreadcrumbProps {
-  items: BreadcrumbItemProps[];
+interface BreadcrumbProps {
   separator?: string;
   className?: string;
+  children: ReactNode;
 }
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({
-  items,
-  className,
-  separator,
-}) => {
+const Breadcrumb: React.FC<BreadcrumbProps> & {
+  Item: React.ComponentType<BreadcrumbItemProps>;
+} = ({ children, separator = ">", className }) => {
   const rootClass = cn(`flex space-x-2`, className);
-  const router = useRouter();
+  const childrenRender = React.Children.map(children, (child, index) => (
+    <>
+      {child}
+      {index < React.Children.count(children) - 1 && (
+        <span className="text-white">{separator}</span>
+      )}
+    </>
+  ));
 
   return (
-    <nav className={rootClass}>
-      {items.map((item, index) => {
-        const isLastItem = index === items.length - 1;
-        const isActive = item.href === router.pathname || isLastItem;
-        return (
-          <Fragment key={index}>
-            <BreadcrumbItem {...item} isActive={isActive} />
-            {!isLastItem && (
-              <span className="text-white">{separator ? separator : `>`}</span>
-            )}
-          </Fragment>
-        );
-      })}
+    <nav className={rootClass} aria-label="breadcrumb">
+      {childrenRender}
     </nav>
   );
 };
+
+Breadcrumb.Item = BreadcrumbItem;
 
 export default Breadcrumb;
