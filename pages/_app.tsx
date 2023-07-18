@@ -46,20 +46,20 @@ export default function App({ Component, pageProps }: AppWithProps) {
 
   return (
     <ToastQueueProvider>
-      <SocketProvider>
-        <AxiosProvider>
-          <AuthProvider>
-            <ChatroomContextProvider>
-              {getHistory(
-                <Startup isAnonymous={isAnonymous}>
-                  {getLayout(<Component {...pageProps} />)}
-                  {!isProduction && <ApiHistoryList />}
-                </Startup>
-              )}
-            </ChatroomContextProvider>
-          </AuthProvider>
-        </AxiosProvider>
-      </SocketProvider>
+      {/* <SocketProvider> */}
+      <AxiosProvider>
+        <AuthProvider>
+          <ChatroomContextProvider>
+            {getHistory(
+              <Startup isAnonymous={isAnonymous}>
+                {getLayout(<Component {...pageProps} />)}
+                {!isProduction && <ApiHistoryList />}
+              </Startup>
+            )}
+          </ChatroomContextProvider>
+        </AuthProvider>
+      </AxiosProvider>
+      {/* </SocketProvider> */}
     </ToastQueueProvider>
   );
 }
