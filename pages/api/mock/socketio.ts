@@ -8,6 +8,20 @@ import { Server as HttpServer } from "http";
 export const SOCKET_MESSAGE_URL = "/api/internal/socket/message";
 export const SOCKET_URL = "/api/internal/socket/socketio";
 
+export enum SOCKET_EVENT {
+  CONNECTION_OPEN = "CONNECTION_OPEN",
+  CONNECTION_CLOSE = "CONNECTION_CLOSE",
+  CHATROOM_JOIN = "CHATROOM_JOIN",
+  CHATROOM_LEAVE = "CHATROOM_LEAVE",
+  CHAT_MESSAGE = "CHAT_MESSAGE",
+}
+
+enum SOCKET_STATUS {
+  CONNECTING = 0,
+  OPEN,
+  CLOSED,
+}
+
 export type NextApiResponseServerIO = NextApiResponse & {
   socket: Socket & {
     server: NetServer & {
