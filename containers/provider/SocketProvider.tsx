@@ -60,24 +60,6 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
     };
   }, []);
 
-  const emit = useCallback(
-    async (event: string, data: any) => {
-      if (!socket) {
-        console.log("socket is null");
-        return;
-      }
-
-      try {
-        socket.current?.emit(event, data, (response: any) => {
-          console.log("response after emitting", event, response);
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [socket]
-  );
-
   const disconnect = useCallback(() => {
     if (socket.current) {
       socket.current?.disconnect();
@@ -87,7 +69,7 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <SocketContext.Provider
-      value={{ socketStatus, socket: socket.current, emit, disconnect }}
+      value={{ socketStatus, socket: socket.current, disconnect }}
     >
       {children}
     </SocketContext.Provider>
