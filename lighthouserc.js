@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3030";
 const MOCK_ROOM_ID = "abc";
 
 let url = [
