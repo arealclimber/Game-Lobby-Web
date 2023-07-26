@@ -41,8 +41,9 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
         ? {
             path: SOCKET_URL,
             addTrailingSlash: false,
+            timeout: 1000 * 60 * 60,
           }
-        : {}
+        : { path: SOCKET_URL, addTrailingSlash: false, timeout: 1000 * 60 * 60 }
     );
 
     socket.current
